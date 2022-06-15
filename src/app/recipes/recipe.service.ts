@@ -13,7 +13,7 @@ export class RecipeService {
             'This super flavorsome & delicious homemade',
             'https://c2.staticflickr.com/6/5134/30065852941_76d1d0a157_b.jpg',
             [
-                new Ingredient('Moong Dal', 1),
+                new Ingredient('Moong Dal', 100),
                 new Ingredient('Water', 500)
             ]),
         new Recipe(
@@ -30,6 +30,10 @@ export class RecipeService {
 
     getRecipes() {
         return this.recipes.slice();
+    }
+
+    getRecipe(index: number) {
+        return this.recipes[index];
     }
 
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
