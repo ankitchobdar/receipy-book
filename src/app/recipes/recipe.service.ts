@@ -8,24 +8,25 @@ import { Recipe } from "./recipe.model";
 export class RecipeService {
     recipesChanged = new Subject<Recipe []>();
 
-    private recipes: Recipe[] = [
-        new Recipe(
-            'Dal tadka',
-            'This super flavorsome & delicious homemade',
-            'https://c2.staticflickr.com/6/5134/30065852941_76d1d0a157_b.jpg',
-            [
-                new Ingredient('Moong Dal', 100),
-                new Ingredient('Water', 500)
-            ]),
-        new Recipe(
-            'Gulab Jamun',
-            'Gulab jamun is a beloved Indian dessert',
-            'https://c1.staticflickr.com/9/8409/30001106280_676f968089_b.jpg',
-            [
-                new Ingredient('Maida', 200),
-                new Ingredient('Flour', 100)
-            ])
-    ];
+    private recipes: Recipe[] = [];
+    // private recipes: Recipe[] = [
+    //     new Recipe(
+    //         'Dal tadka',
+    //         'This super flavorsome & delicious homemade',
+    //         'https://c2.staticflickr.com/6/5134/30065852941_76d1d0a157_b.jpg',
+    //         [
+    //             new Ingredient('Moong Dal', 100),
+    //             new Ingredient('Water', 500)
+    //         ]),
+    //     new Recipe(
+    //         'Gulab Jamun',
+    //         'Gulab jamun is a beloved Indian dessert',
+    //         'https://c1.staticflickr.com/9/8409/30001106280_676f968089_b.jpg',
+    //         [
+    //             new Ingredient('Maida', 200),
+    //             new Ingredient('Flour', 100)
+    //         ])
+    // ];
 
     constructor(private slService: ShoppingListService) {}
 
@@ -54,5 +55,10 @@ export class RecipeService {
     deleteRecipe(index: number) {
         this.recipes.splice(index, 1);
         this.recipesChanged.next(this.recipes.slice());
+    }
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipesChanged.next(this.recipes.slice())
     }
 }  
